@@ -24,5 +24,34 @@
 class Nostress_Widgetproduct_Block_Product 
 	extends Mage_Catalog_Block_Product implements Mage_Widget_Block_Interface 
 {
+	private function _prepareCollection() {
+		
+		if( empty( $this->collection ) ) 
+		{
+			$this->collection = Mage::getResourceModel('catalog/product_collection')
+				->addAttributeToSelect(Mage::getSingleton('catalog/config')->getProductAttributes())
+				->addMinimalPrice()
+				->addFinalPrice()
+				->addTaxPercents()
+				->addUrlRewrite();
+		}
+		
+		return $this->collection;
+	}
+	
+	public function getProduct(){
+		
+		if(empty($this->product)){
+			$this->_prepareCollection()
+				->getSelect()
+				->where('sku=?', $this->getSku())
+				->limit(1);
+			
+			$this->product = $collection->getFirstItem();	
+		}
+		
+		return $this->product;
+	}
+	
 	
 }
