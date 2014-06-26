@@ -1,5 +1,11 @@
-magento-widget-show-product
-===========================
+magento-widget-show-product (IS DEAD)
+=====================================
+
+CHECK:
+======
+
+https://github.com/buric/Inchoo_FeaturedProducts
+================================================
 
 Magento Widget with allows you to display product information like name, image, price and link it with product detail page in any static block or page
 
